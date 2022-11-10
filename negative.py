@@ -1,6 +1,8 @@
-import cv2
-import os
 import csv
+import os
+
+import cv2
+
 
 def sort_img():
     folder_dir = "C:/projects/negative/f_negative"
@@ -12,7 +14,8 @@ def sort_img():
         crop_img = grayscaleImage[400:600, 100:500]
         ret, threshold_image = cv2.threshold(crop_img, 110, 255, 0)
         (imageHeight, imageWidth) = threshold_image.shape[:2]
-        whitePercent = cv2.countNonZero(threshold_image) / (imageHeight * imageWidth)
+        whitePercent = cv2.countNonZero(threshold_image) / \
+                                       (imageHeight * imageWidth)
         if whitePercent > 0.5:
             result = 'n'
         elif whitePercent < 0.5:
@@ -25,7 +28,8 @@ def sort_img():
         writer.writeheader()
         for i in list:
             writer.writerow(i)
-    return 
+    return
+
 
 if __name__ == '__main__':
     sort_img()
